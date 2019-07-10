@@ -1,0 +1,402 @@
+{
+  "names": [
+    {
+      "text": "Bank of America",
+      "value": "bofa",
+      "accounttypes": [
+        "Checking",
+        "Saving",
+        "CreditCard",
+        "Mortgage"
+      ]
+    },
+    {
+      "text": "Citi Bank",
+      "value": "citi",
+      "accounttypes": [
+        "Checking",
+        "Saving",
+        "CreditCard"
+      ]
+    },
+    {
+      "text": "Amex",
+      "value": "amex",
+      "accounttypes": [
+        "Checking",
+        "Saving",
+        "CreditCard",
+        "Mortgage"
+      ]
+    },
+    {
+      "text": "First Tech Credit Union",
+      "value": "fcu",
+      "accounttypes": [
+        "Checking",
+        "Saving",
+        "CreditCard",
+        "Mortgage"
+      ]
+    },
+    {
+      "text": "Wells Fargo",
+      "value": "wf",
+      "accounttypes": [
+        "Checking",
+        "Saving",
+        "CreditCard",
+        "Mortgage"
+      ]
+    },
+    {
+      "text": "Comcast",
+      "value": "comcast",
+      "accounttypes": [
+        "Utility"
+      ]
+    }
+  ],
+  "bofa": {
+    "accounts": [
+      {
+        "Header": "Id",
+        "accessor": "_id",
+        "minWidth": 80,
+        "sortable": false
+      },
+      {
+        "Header": "AccountNumber",
+        "accessor": "accountNumber",
+        "minWidth": 60,
+        "sortable": false,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Nickname",
+        "accessor": "nickname",
+        "minWidth": 70,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Type",
+        "accessor": "accountType",
+        "minWidth": 60,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Balance",
+        "accessor": "currentBalance",
+        "minWidth": 70,
+        "sortable": false,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Date",
+        "accessor": "balanceAsOf",
+        "sortable": false,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Status",
+        "accessor": "status",
+        "minWidth": 50,
+        "sortable": false,
+        "style": {
+          "textAlign": "center"
+        }
+      }
+    ],
+    "transactions": [
+      {
+        "Header": "Id",
+        "accessor": "_id",
+        "minWidth": 80,
+        "sortable": false
+      },
+      {
+        "Header": "Description",
+        "accessor": "description",
+        "sortable": false,
+        "minWidth": 70,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Amount",
+        "accessor": "amount",
+        "minWidth": 70,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "FI TID",
+        "accessor": "transactionId",
+        "minWidth": 70,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Status",
+        "accessor": "status",
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Posted Date",
+        "accessor": "postedTimestamp",
+        "minWidth": 70,
+        "style": {
+          "textAlign": "center"
+        }
+      }
+    ]
+  },
+  "citi": {
+    "accounts": [
+      {
+        "Header": "Id",
+        "accessor": "_id",
+        "minWidth": 60,
+        "sortable": false
+      },
+      {
+        "Header": "AccountNumber",
+        "accessor": "displayAccountNumber",
+        "minWidth": 60,
+        "sortable": false,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Nickname",
+        "accessor": "accountNickname",
+        "minWidth": 50,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Type",
+        "accessor": "accountType",
+        "minWidth": 40,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Balance",
+        "accessor": "currentBalance",
+        "minWidth": 40,
+        "sortable": false,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Status",
+        "accessor": "accountStatus",
+        "minWidth": 40,
+        "sortable": false,
+        "style": {
+          "textAlign": "center"
+        }
+      }
+    ],
+    "transactions": [
+      {
+        "Header": "Id",
+        "accessor": "_id",
+        "minWidth": 80,
+        "sortable": false
+      },
+      {
+        "Header": "Description",
+        "accessor": "description",
+        "sortable": false,
+        "minWidth": 70,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Amount",
+        "accessor": "amount",
+        "minWidth": 70,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "FI TID",
+        "accessor": "transactionId",
+        "minWidth": 70,
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Status",
+        "accessor": "status",
+        "style": {
+          "textAlign": "center"
+        }
+      },
+      {
+        "Header": "Posted Date",
+        "accessor": "postedTimestamp",
+        "minWidth": 70,
+        "style": {
+          "textAlign": "center"
+        }
+      }
+    ]
+  },
+  "amex": {
+    "accounts": [
+      {
+        "Header": "Description",
+        "accessor": "accountDesc"
+      },
+      {
+        "Header": "Ac Num",
+        "accessor": "accountNumber"
+      },
+      {
+        "Header": "Id",
+        "accessor": "_id"
+      },
+      {
+        "Header": "Ac Type",
+        "accessor": "accountType"
+      },
+      {
+        "Header": "Curr Balance",
+        "accessor": "currBalance"
+      },
+      {
+        "Header": "Credit Line",
+        "accessor": "creditLine"
+      },
+      {
+        "Header": "Interest Rate",
+        "accessor": "interestRate"
+      }
+    ],
+    "transactions": []
+  },
+  "wf": {
+    "accounts": [
+      {
+        "Header": "Description",
+        "accessor": "accountDesc"
+      },
+      {
+        "Header": "Ac Num",
+        "accessor": "accountNumber"
+      },
+      {
+        "Header": "Id",
+        "accessor": "_id"
+      },
+      {
+        "Header": "Ac Type",
+        "accessor": "accountType"
+      },
+      {
+        "Header": "Curr Balance",
+        "accessor": "currBalance"
+      },
+      {
+        "Header": "Credit Line",
+        "accessor": "creditLine"
+      },
+      {
+        "Header": "Interest Rate",
+        "accessor": "interestRate"
+      }
+    ],
+    "transactions": []
+  },
+  "fcu": {
+    "accounts": [
+      {
+        "Header": "Description",
+        "accessor": "accountDesc"
+      },
+      {
+        "Header": "Ac Num",
+        "accessor": "accountNumber"
+      },
+      {
+        "Header": "Id",
+        "accessor": "_id"
+      },
+      {
+        "Header": "Ac Type",
+        "accessor": "accountType"
+      },
+      {
+        "Header": "Curr Balance",
+        "accessor": "currBalance"
+      },
+      {
+        "Header": "Credit Line",
+        "accessor": "creditLine"
+      },
+      {
+        "Header": "Interest Rate",
+        "accessor": "interestRate"
+      }
+    ],
+    "transactions": []
+  },
+  "comcast": {
+    "accounts": [
+      {
+        "Header": "Description",
+        "accessor": "accountDesc"
+      },
+      {
+        "Header": "Ac Num",
+        "accessor": "accountNumber"
+      },
+      {
+        "Header": "Id",
+        "accessor": "_id"
+      },
+      {
+        "Header": "Ac Type",
+        "accessor": "accountType"
+      },
+      {
+        "Header": "Curr Balance",
+        "accessor": "currBalance"
+      },
+      {
+        "Header": "Credit Line",
+        "accessor": "creditLine"
+      },
+      {
+        "Header": "Interest Rate",
+        "accessor": "interestRate"
+      }
+    ],
+    "transactions": []
+  }
+}

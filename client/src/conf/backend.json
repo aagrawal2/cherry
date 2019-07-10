@@ -1,0 +1,4 @@
+{
+    "baseURL": "http://localhost/ump",
+    "timeout": "10000"
+}

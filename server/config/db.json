@@ -1,0 +1,44 @@
+{
+    "dev": {
+        "username":" ",
+        "password":"",
+        "hosts":["localhost"],
+        "port":27017,        
+        "dbname": "ump",
+        "options": {
+            "maxPoolSize": 5,
+            "replicaSet": "",
+            "ssl": false,
+            "connectTimeoutMS": null,
+            "socketTimeoutMS": null
+        }
+    },
+    "e2e": {
+        "username":"",
+        "password":"",
+        "hosts":["host1","host2"],
+        "port":27017,        
+        "dbname": "umb",
+        "options": {
+            "maxPoolSize": 100,
+            "replicaSet": "",
+            "ssl": "prefer",
+            "connectTimeoutMS": null,
+            "socketTimeoutMS": null
+        }
+    },
+    "prd": {
+        "username":"",
+        "password":"",
+        "hosts":["host1","host2"],
+        "port":27017,        
+        "dbname": "umb",
+        "options": {
+            "maxPoolSize": 100,
+            "replicaSet": "",
+            "ssl": "prefer",
+            "connectTimeoutMS": null,
+            "socketTimeoutMS": null
+        }
+    }
+}

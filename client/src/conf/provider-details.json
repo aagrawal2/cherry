@@ -1,0 +1,822 @@
+{
+    "__comment0": "If the fields in this file not are not found in real Account object then it won't be rendered",
+    "__comment1": "all possible field names for accountType value irrespective of provider and this is case-insensitive",
+    "accountTypeFields": [
+        "accountType",
+        "account_type"
+    ],
+    "__comment2": "sub-fields represent date time values",
+    "dateFields": [
+        "date",
+        "time",
+        "AsOf"
+    ],
+    "__comment3": "sub-fields having numeric as default values while creating account",
+    "numericFields": [
+        "accountid",
+        "number",
+        "balance",
+        "credit",
+        "cash",
+        "creditline",
+        "limit",
+        "amount",
+        "interest",
+        "principal"
+    ],
+    "__comment4": "sub-fields having alphabetic as default values while creating account",
+    "alphabeticFields": [
+        "name",
+        "nick",
+        "display"
+    ],
+    "__comment5": "sub-fields represent currency code",
+    "currencyFields": [
+        "code",
+        "currency"
+    ],
+    "bofa": {
+        "accounts": {
+            "form_group_size": 3,
+            "checking": [
+                {
+                    "label": "Account Id",
+                    "field": "accountId"
+                },
+                {
+                    "label": "Account Number",
+                    "field": "accountNumber"
+                },
+                {
+                    "label": "Routing Number",
+                    "field": "routingTransitNumber"
+                },
+                {
+                    "label": "Currency Code",
+                    "field": "currency.currencyCode"
+                },
+                {
+                    "label": "Display Name",
+                    "field": "displayName"
+                },
+                {
+                    "label": "Nick Name",
+                    "field": "nickname"
+                },
+                {
+                    "label": "Current Date",
+                    "field": "balanceAsOf"
+                },
+                {
+                    "label": "Account Type",
+                    "field": "accountType"
+                },
+                {
+                    "label": "Available Balance",
+                    "field": "availableBalance"
+                },
+                {
+                    "label": "Current Balance",
+                    "field": "currentBalance"
+                },
+                {
+                    "label": "Interest YTD",
+                    "field": "interestYtd"
+                },
+                {
+                    "label": "Status",
+                    "field": "status"
+                }
+            ],
+            "saving": [
+                {
+                    "label": "Account Id",
+                    "field": "accountId"
+                },
+                {
+                    "label": "Account Number",
+                    "field": "accountNumber"
+                },
+                {
+                    "label": "Routing Number",
+                    "field": "routingTransitNumber"
+                },
+                {
+                    "label": "Currency Code",
+                    "field": "currency.currencyCode"
+                },
+                {
+                    "label": "Display Name",
+                    "field": "displayName"
+                },
+                {
+                    "label": "Nick Name",
+                    "field": "nickname"
+                },
+                {
+                    "label": "Current Date",
+                    "field": "balanceAsOf"
+                },
+                {
+                    "label": "Account Type",
+                    "field": "accountType"
+                },
+                {
+                    "label": "Available Balance",
+                    "field": "availableBalance"
+                },
+                {
+                    "label": "Current Balance",
+                    "field": "currentBalance"
+                },
+                {
+                    "label": "Interest YTD",
+                    "field": "interestYtd"
+                },
+                {
+                    "label": "Status",
+                    "field": "status"
+                }
+            ],
+            "creditcard": [
+                {
+                    "label": "Account Id",
+                    "field": "accountId"
+                },
+                {
+                    "label": "Account Number",
+                    "field": "accountNumber"
+                },
+                {
+                    "label": "Routing Number",
+                    "field": "routingTransitNumber"
+                },
+                {
+                    "label": "Currency Code",
+                    "field": "currency.currencyCode"
+                },
+                {
+                    "label": "Display Name",
+                    "field": "displayName"
+                },
+                {
+                    "label": "Nick Name",
+                    "field": "nickname"
+                },
+                {
+                    "label": "Current Date",
+                    "field": "balanceAsOf"
+                },
+                {
+                    "label": "Account Type",
+                    "field": "accountType"
+                },
+                {
+                    "label": "Status",
+                    "field": "status"
+                },
+                {
+                    "label": "Current Balance",
+                    "field": "currentBalance"
+                },
+                {
+                    "label": "Available Credit",
+                    "field": "availableCredit"
+                },
+                {
+                    "label": "Available Cash",
+                    "field": "availableCash"
+                },
+                {
+                    "label": "Credit Line",
+                    "field": "creditLine"
+                },
+                {
+                    "label": "Cash Advance Limit",
+                    "field": "cashAdvanceLimit"
+                },
+                {
+                    "label": "Minimum Payment Amount",
+                    "field": "minimumPaymentAmount"
+                },
+                {
+                    "label": "Next Payment Date",
+                    "field": "nextPaymentDate"
+                },
+                {
+                    "label": "Next Payment Amount",
+                    "field": "nextPaymentAmount"
+                },
+                {
+                    "label": "Last Payment Amount",
+                    "field": "lastPaymentAmount"
+                },
+                {
+                    "label": "Last Payment Date",
+                    "field": "lastPaymentDate"
+                }
+            ],
+            "mortgage": [
+                {
+                    "label": "Account Id",
+                    "field": "accountId"
+                },
+                {
+                    "label": "Account Number",
+                    "field": "accountNumber"
+                },
+                {
+                    "label": "Routing Number",
+                    "field": "routingTransitNumber"
+                },
+                {
+                    "label": "Currency Code",
+                    "field": "currency.currencyCode"
+                },
+                {
+                    "label": "Display Name",
+                    "field": "displayName"
+                },
+                {
+                    "label": "Nick Name",
+                    "field": "nickname"
+                },
+                {
+                    "label": "Current Date",
+                    "field": "balanceAsOf"
+                },
+                {
+                    "label": "Account Type",
+                    "field": "accountType"
+                },
+                {
+                    "label": "Principal Balance",
+                    "field": "principalBalance"
+                },
+                {
+                    "label": "Status",
+                    "field": "status"
+                },
+                {
+                    "label": "Original Principal",
+                    "field": "originalPrincipal"
+                },
+                {
+                    "label": "Next Payment Date",
+                    "field": "nextPaymentDate"
+                },
+                {
+                    "label": "Next Payment Amount",
+                    "field": "nextPaymentAmount"
+                },
+                {
+                    "label": "Interest Rate",
+                    "field": "interestRate"
+                },
+                {
+                    "label": "Interest Paid YTD",
+                    "field": "interestPaidYearToDate"
+                },
+                {
+                    "label": "Escrow Balance",
+                    "field": "escrowBalance"
+                }
+            ]
+        },
+        "transactions": {
+            "form_group_size": 3,
+            "checking": [
+                {
+                    "label": "Amount",
+                    "field": "amount"
+                },
+                {
+                    "label": "Posted Date",
+                    "field": "postedTimestamp"
+                },
+                {
+                    "label": "Description",
+                    "field": "description"
+                },
+                {
+                    "label": "FI TID",
+                    "field": "transactionId"
+                },
+                {
+                    "label": "Category",
+                    "field": "subCategory"
+                },
+                {
+                    "label": "Type",
+                    "field": "transactionType"
+                },
+                {
+                    "label": "Memo",
+                    "field": "memo"
+                },
+                {
+                    "label": "Reference Number",
+                    "field": "reference"
+                },
+                {
+                    "label": "Status",
+                    "field": "status"
+                },
+                {
+                    "label": "Transaction Date",
+                    "field": "transactionTimestamp"
+                }
+            ],
+            "saving": [
+                {
+                    "label": "Amount",
+                    "field": "amount"
+                },
+                {
+                    "label": "Posted Date",
+                    "field": "postedTimestamp"
+                },
+                {
+                    "label": "Description",
+                    "field": "description"
+                },
+                {
+                    "label": "FI TID",
+                    "field": "transactionId"
+                },
+                {
+                    "label": "Category",
+                    "field": "subCategory"
+                },
+                {
+                    "label": "Type",
+                    "field": "transactionType"
+                },
+                {
+                    "label": "Memo",
+                    "field": "memo"
+                },
+                {
+                    "label": "Reference Number",
+                    "field": "reference"
+                },
+                {
+                    "label": "Status",
+                    "field": "status"
+                },
+                {
+                    "label": "Transaction Date",
+                    "field": "transactionTimestamp"
+                }
+            ],
+            "creditcard": [
+                {
+                    "label": "Amount",
+                    "field": "amount"
+                },
+                {
+                    "label": "Posted Date",
+                    "field": "postedTimestamp"
+                },
+                {
+                    "label": "Description",
+                    "field": "description"
+                },
+                {
+                    "label": "FI TID",
+                    "field": "transactionId"
+                },
+                {
+                    "label": "Category",
+                    "field": "subCategory"
+                },
+                {
+                    "label": "Type",
+                    "field": "transactionType"
+                },
+                {
+                    "label": "Memo",
+                    "field": "memo"
+                },
+                {
+                    "label": "Reference Number",
+                    "field": "reference"
+                },
+                {
+                    "label": "Status",
+                    "field": "status"
+                },
+                {
+                    "label": "Transaction Date",
+                    "field": "transactionTimestamp"
+                },
+                {
+                    "label": "Fee Amount",
+                    "field": "feesAmount"
+                },
+                {
+                    "label": "Principal Amount",
+                    "field": "principalAmount"
+                },
+                {
+                    "label": "Interest Amount",
+                    "field": "interestAmount"
+                }
+            ],
+            "mortgage": [
+                {
+                    "label": "Amount",
+                    "field": "amount"
+                },
+                {
+                    "label": "Posted Date",
+                    "field": "postedTimestamp"
+                },
+                {
+                    "label": "Description",
+                    "field": "description"
+                },
+                {
+                    "label": "FI TID",
+                    "field": "transactionId"
+                },
+                {
+                    "label": "Category",
+                    "field": "subCategory"
+                },
+                {
+                    "label": "Type",
+                    "field": "transactionType"
+                },
+                {
+                    "label": "Memo",
+                    "field": "memo"
+                },
+                {
+                    "label": "Reference Number",
+                    "field": "reference"
+                },
+                {
+                    "label": "Status",
+                    "field": "status"
+                },
+                {
+                    "label": "Transaction Date",
+                    "field": "transactionTimestamp"
+                },
+                {
+                    "label": "Fee Amount",
+                    "field": "feesAmount"
+                },
+                {
+                    "label": "Principal Amount",
+                    "field": "principalAmount"
+                },
+                {
+                    "label": "Interest Amount",
+                    "field": "interestAmount"
+                }
+            ]
+        }
+    },
+    "citi": {
+        "accounts": {
+            "form_group_size": 3,
+            "checking": [
+                {
+                    "label": "Account Id",
+                    "field": "accountId"
+                },
+                {
+                    "label": "Account Number",
+                    "field": "displayAccountNumber"
+                },
+                {
+                    "label": "Description",
+                    "field": "accountDescription"
+                },
+                {
+                    "label": "Currency Code",
+                    "field": "currencyCode"
+                },
+                {
+                    "label": "Product Name",
+                    "field": "productName"
+                },
+                {
+                    "label": "Nick Name",
+                    "field": "accountNickname"
+                },
+                {
+                    "label": "Balance Type",
+                    "field": "balanceType"
+                },
+                {
+                    "label": "Account Type",
+                    "field": "accountType"
+                },
+                {
+                    "label": "Available Balance",
+                    "field": "availableBalance"
+                },
+                {
+                    "label": "Current Balance",
+                    "field": "currentBalance"
+                },
+                {
+                    "label": "Interest Rate",
+                    "field": "interestRate"
+                },
+                {
+                    "label": "Total Interest Amount",
+                    "field": "totalInterestAmount"
+                },
+                {
+                    "label": "Account Status",
+                    "field": "accountStatus"
+                }
+            ],
+            "saving": [
+                {
+                    "label": "Account Id",
+                    "field": "accountId"
+                },
+                {
+                    "label": "Account Number",
+                    "field": "displayAccountNumber"
+                },
+                {
+                    "label": "Description",
+                    "field": "accountDescription"
+                },
+                {
+                    "label": "Currency Code",
+                    "field": "currencyCode"
+                },
+                {
+                    "label": "Product Name",
+                    "field": "productName"
+                },
+                {
+                    "label": "Nick Name",
+                    "field": "accountNickname"
+                },
+                {
+                    "label": "Balance Type",
+                    "field": "balanceType"
+                },
+                {
+                    "label": "Account Type",
+                    "field": "accountType"
+                },
+                {
+                    "label": "Available Balance",
+                    "field": "availableBalance"
+                },
+                {
+                    "label": "Current Balance",
+                    "field": "currentBalance"
+                },
+                {
+                    "label": "Interest Rate",
+                    "field": "interestRate"
+                },
+                {
+                    "label": "Total Interest Amount",
+                    "field": "totalInterestAmount"
+                },
+                {
+                    "label": "Account Status",
+                    "field": "accountStatus"
+                }
+            ],
+            "creditcard": [
+                {
+                    "label": "Account Id",
+                    "field": "accountId"
+                },
+                {
+                    "label": "Account Number",
+                    "field": "displayAccountNumber"
+                },
+                {
+                    "label": "Description",
+                    "field": "accountDescription"
+                },
+                {
+                    "label": "Product Name",
+                    "field": "productName"
+                },
+                {
+                    "label": "Nick Name",
+                    "field": "accountNickname"
+                },
+                {
+                    "label": "Balance Type",
+                    "field": "balanceType"
+                },
+                {
+                    "label": "Currency Code",
+                    "field": "currencyCode"
+                },
+                {
+                    "label": "Account Type",
+                    "field": "accountType"
+                },
+                {
+                    "label": "Status",
+                    "field": "accountStatus"
+                },
+                {
+                    "label": "Current Balance",
+                    "field": "currentBalance"
+                },
+                {
+                    "label": "Available Credit",
+                    "field": "availableCredit"
+                },
+                {
+                    "label": "Credit Limit",
+                    "field": "creditLimit"
+                },
+                {
+                    "label": "Cash Advance Limit",
+                    "field": "cashAdvanceLimit"
+                },
+                {
+                    "label": "Cash Advance Available Amount",
+                    "field": "cashAdvanceAvailableAmount"
+                },
+                {
+                    "label": "Minimum Due Amount",
+                    "field": "minimumDueAmount"
+                },
+                {
+                    "label": "Payment Due Date",
+                    "field": "paymentDueDate"
+                },
+                {
+                    "label": "Last Payment Amount",
+                    "field": "lastPaymentAmount"
+                },
+                {
+                    "label": "Last Statement Balance",
+                    "field": "lastStatementBalance"
+                },
+                {
+                    "label": "Outstanding Balance",
+                    "field": "outstandingBalance"
+                },
+                {
+                    "label": "Last Statement Date",
+                    "field": "lastStatementDate"
+                },
+                {
+                    "label": "Last Payment Date",
+                    "field": "lastPaymentDate"
+                }
+            ]
+        },
+        "transactions": {
+            "form_group_size": 3,
+            "checking": [
+                {
+                    "label": "Amount",
+                    "field": "amount"
+                },
+                {
+                    "label": "Posted Date",
+                    "field": "postedTimestamp"
+                },
+                {
+                    "label": "Description",
+                    "field": "description"
+                },
+                {
+                    "label": "FI TID",
+                    "field": "transactionId"
+                },
+                {
+                    "label": "Category",
+                    "field": "subCategory"
+                },
+                {
+                    "label": "Type",
+                    "field": "transactionType"
+                },
+                {
+                    "label": "Memo",
+                    "field": "memo"
+                },
+                {
+                    "label": "Reference Number",
+                    "field": "reference"
+                },
+                {
+                    "label": "Status",
+                    "field": "status"
+                },
+                {
+                    "label": "Transaction Date",
+                    "field": "transactionTimestamp"
+                }
+            ],
+            "saving": [
+                {
+                    "label": "Amount",
+                    "field": "amount"
+                },
+                {
+                    "label": "Posted Date",
+                    "field": "postedTimestamp"
+                },
+                {
+                    "label": "Description",
+                    "field": "description"
+                },
+                {
+                    "label": "FI TID",
+                    "field": "transactionId"
+                },
+                {
+                    "label": "Category",
+                    "field": "subCategory"
+                },
+                {
+                    "label": "Type",
+                    "field": "transactionType"
+                },
+                {
+                    "label": "Memo",
+                    "field": "memo"
+                },
+                {
+                    "label": "Reference Number",
+                    "field": "reference"
+                },
+                {
+                    "label": "Status",
+                    "field": "status"
+                },
+                {
+                    "label": "Transaction Date",
+                    "field": "transactionTimestamp"
+                }
+            ],
+            "creditcard": [
+                {
+                    "label": "Amount",
+                    "field": "amount"
+                },
+                {
+                    "label": "Posted Date",
+                    "field": "postedTimestamp"
+                },
+                {
+                    "label": "Description",
+                    "field": "description"
+                },
+                {
+                    "label": "FI TID",
+                    "field": "transactionId"
+                },
+                {
+                    "label": "Category",
+                    "field": "subCategory"
+                },
+                {
+                    "label": "Type",
+                    "field": "transactionType"
+                },
+                {
+                    "label": "Memo",
+                    "field": "memo"
+                },
+                {
+                    "label": "Reference Number",
+                    "field": "reference"
+                },
+                {
+                    "label": "Status",
+                    "field": "status"
+                },
+                {
+                    "label": "Transaction Date",
+                    "field": "transactionTimestamp"
+                },
+                {
+                    "label": "Fee Amount",
+                    "field": "feesAmount"
+                },
+                {
+                    "label": "Principal Amount",
+                    "field": "principalAmount"
+                },
+                {
+                    "label": "Interest Amount",
+                    "field": "interestAmount"
+                }
+            ]
+        }
+    }
+}
