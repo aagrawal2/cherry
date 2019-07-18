@@ -3,9 +3,14 @@ import bodyParser from 'body-parser';
 import { readFileSync } from 'fs';
 import { createServer as createServerHttps } from 'https';
 import { createServer as createServerHttp } from 'http';
+import { makeExecutableSchema } from 'graphql-tools';
+import graphqlHTTP from 'express-graphql';
+
 import MongoClient from 'mongodb';
 import path from 'path';
 import dbConfig from '../config/db.json';
+import typeDefs from './graphql/typeDefs';
+import resolvers from './graphql/resolvers';
 
 const args = require('minimist')(process.argv.splice(2));
 const ENV = args['ENV'].toLowerCase() || 'dev';
@@ -23,10 +28,10 @@ import accountRoutes from './routes/accounts';
 import transactionRoutes from './routes/transactions';
 
 //custom middleware to handle cross-origin requests
-const allowCrossDomain = (req,res,next) => {
-    res.header('Access-Control-Allow-Origin','*');
-    res.header('Access-Control-Allow-Headers','Content-Type');
-    res.header('Access-Control-Allow-Methods','GET,POST,PUT,DELETE');
+const allowCrossDomain = (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
 
     next();
 }
@@ -41,29 +46,47 @@ app.use(allowCrossDomain);
 //app.use(cors())  //bakcup plan in case some issue with custom middleware fn allowCrossDomain()
 
 //configure middleware routes
-app.use('/ump',userRoutes,accountRoutes,transactionRoutes);
+app.use('/ump', userRoutes, accountRoutes, transactionRoutes);
 
 //app settings - to indent prettified JSON - used by JSON.stringify()
 app.set('json spaces', 4);
 
+const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers
+});
+
+app.use('/graphql', graphqlHTTP((request, response, graphQLParams) => ({
+    graphiql: true,
+    schema,
+    // rootValue: serverConfig,
+    context: {
+        request,
+        response,
+        sharedResource: app.locals
+    },
+    customFormatErrorFn: err => ({
+        message: err.message
+    })
+})))
 //check for null, undefined, empty, space String
 const stringNullEmptySpace = (str) => (!str || str.length === 0 || /^\s*$/.test(str));
 
 //load env specific db configuration
 function getMongodbUrl() {
     let usernamePasswd = '';
-    let hostPort = ''    
+    let hostPort = ''
     const username = dbConfig[ENV].username;
     if (!stringNullEmptySpace(username)) {
         const password = dbConfig[ENV].password;
         usernamePasswd = username + ':' + password + '@';
     }
     const port = dbConfig[ENV].port;
-    const hosts = dbConfig[ENV].hosts;    
+    const hosts = dbConfig[ENV].hosts;
     for (let host of hosts) {
         hostPort += host + ":" + port + ",";
     }
-    hostPort = hostPort.substring(0,hostPort.length-1);
+    hostPort = hostPort.substring(0, hostPort.length - 1);
     let appendableOptions = '';
     const options = dbConfig[ENV].options;
     for (let option in options) {
@@ -73,15 +96,15 @@ function getMongodbUrl() {
         }
     }
     if (!stringNullEmptySpace(appendableOptions)) {
-        appendableOptions = appendableOptions.substring(0,appendableOptions.length-1);
-    }    
+        appendableOptions = appendableOptions.substring(0, appendableOptions.length - 1);
+    }
     return `mongodb://${usernamePasswd}${hostPort}/?${appendableOptions}`
-} 
+}
 //connection url
 const dbUrl = getMongodbUrl();
 
-MongoClient.connect(dbUrl, {useNewUrlParser:true}, (err, client) => {
-    if(err) {
+MongoClient.connect(dbUrl, { useNewUrlParser: true }, (err, client) => {
+    if (err) {
         console.log(err);
         throw err;
     }
@@ -90,30 +113,30 @@ MongoClient.connect(dbUrl, {useNewUrlParser:true}, (err, client) => {
     const dbName = dbConfig[ENV].dbname;
 
     //storing db connection object in app.locals object so that other modules can share this DB connection object
-    app.locals.db = client.db(dbName);   
-        
+    app.locals.db = client.db(dbName);
+
     //start the application after the db connection is ready
     const options = {
-        key: readFileSync(path.join(__dirname,'../config/server.key')),
-        cert: readFileSync(path.join(__dirname,'../config/server.crt'))
-    };    
+        key: readFileSync(path.join(__dirname, '../config/server.key')),
+        cert: readFileSync(path.join(__dirname, '../config/server.crt'))
+    };
     //create express https.server and listen
-    createServerHttps(options,app)
-        .listen(HTTPS_PORT,() => {    
+    createServerHttps(options, app)
+        .listen(HTTPS_PORT, () => {
             console.log(`express https.server is listening on port:${HTTPS_PORT}`);
-        });        
+        });
     //Enable this code if you want to listen on http server also
     //create express http.server and listen
-    createServerHttp(app).listen(HTTP_PORT,() => {
+    createServerHttp(app).listen(HTTP_PORT, () => {
         console.log(`express http.server is listening on port:${HTTP_PORT}`);
     });
-});    
+});
 
-/* disabled this as redirection is recommended to handle at NGNIX level on top of node.js server 
+/* disabled this as redirection is recommended to handle at NGNIX level on top of node.js server
   coz at server side it add delays in redirection.
   //configure middleware express-force-ssl
-     //const expressForceSSL = require('express-force-ssl');   
+     //const expressForceSSL = require('express-force-ssl');
      //app.use(expressForceSSL);
 */
 
-    
+

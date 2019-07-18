@@ -1,0 +1,31 @@
+{
+  "name": "cherry",
+  "version": "0.0.1",
+  "description": "FI / Non-FI data provider simulation where various entities data can be acquired via various channel types",
+  "scripts": {
+    "bootstrap": "npm i lerna && ./node_modules/.bin/lerna clean --yes  && ./node_modules/.bin/lerna bootstrap --hoist"
+  },
+  "directories": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.intuit.com/fdp-common/cherry"
+  },
+  "keywords": [
+    "fdp",
+    "data provider"
+  ],
+  "author": "Engineering Productivity Team",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "~7.2.3",
+    "babel-register": "~6.26.0"
+  },
+  "dependencies": {
+    "@babel/core": "~7.4.0",
+    "@babel/polyfill": "~7.4.0",
+    "@babel/preset-env": "~7.4.2",
+    "@babel/register": "~7.4.0",
+    "@babel/runtime": "~7.4.2",
+    "lerna": "~3.13.4"
+  }
+}
