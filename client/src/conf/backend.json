@@ -1,4 +1,5 @@
 {
-    "baseURL": "http://localhost/ump",
-    "timeout": "10000"
+    "baseURL": "http://localhost/cherry",
+    "timeout": "10000",
+    "graphQL": true
 }

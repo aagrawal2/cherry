@@ -35,6 +35,10 @@ const typeDefs = [`
 export default typeDefs
 
 /*
- http://localhost/graphql?query={user(username:"test",password:"test"){_id}}
- http://localhost/graphql?query={bofaAccounts(username:"test"){_id,type,accNum,nickname}}
+Query using GET:
+    http://localhost/cherry/graphql?query={user(username:"test",password:"test"){_id}}
+Query using POST:
+    http://localhost/cherry/graphql   requBody: {"query":"{ user(username: \"test\",password: \"test\") {_id} }"}
+Mutation using POST only:
+    http://localhost/cherry/graphql   requBody: {"query":"mutation{ createUser(input: { username: \"xyz1\", password: \"xyz1\"  }){    _id  }}"}
 */

@@ -57,7 +57,8 @@ export const signUp = (url, reqBody, config, setUname, history) => {
                     });
                 }
                 else {
-                    log.error(`Unexpected response with status:${response.status}, statusText:${response.statusText}, data:${response.data}`);
+                    log.error(`Unexpected response with status:${response.status}, 
+                                statusText:${response.statusText}, data:${response.data}`);
                     dispatch({
                         type: 'ERROR',
                         payload: response.data

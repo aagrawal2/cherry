@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 import { readFileSync } from 'fs';
 import { createServer as createServerHttps } from 'https';
 import { createServer as createServerHttp } from 'http';
@@ -46,7 +47,7 @@ app.use(allowCrossDomain);
 //app.use(cors())  //bakcup plan in case some issue with custom middleware fn allowCrossDomain()
 
 //configure middleware routes
-app.use('/ump', userRoutes, accountRoutes, transactionRoutes);
+app.use('/cherry', userRoutes, accountRoutes, transactionRoutes);
 
 //app settings - to indent prettified JSON - used by JSON.stringify()
 app.set('json spaces', 4);
@@ -56,7 +57,7 @@ const schema = makeExecutableSchema({
     resolvers
 });
 
-app.use('/graphql', graphqlHTTP((request, response, graphQLParams) => ({
+app.use('/cherry/graphql', cors(), graphqlHTTP((request, response, graphQLParams) => ({
     graphiql: true,
     schema,
     // rootValue: serverConfig,

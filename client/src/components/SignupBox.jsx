@@ -65,13 +65,26 @@ const submitSignup = (props, username, password) => {
         const config = {
             timeout: Backend.timeout
         };
-        const reqBody = {
-            username,
-            password
-        };
-        const url = `${Backend.baseURL}/user`;
+        if (Backend.graphQL) {
+            const reqBody = {
+                // eslint-disable-next-line quotes
+                query: `mutation{createUser(input:{username:"${username}",password:"${password}"})
+                        {_id}}`
+            };
+            const url = `${Backend.baseURL}/graphql`;
 
-        props.signUp(url, reqBody, config, setUname, history);
+            props.signUp(url, reqBody, config, setUname, history);
+        }
+        else {
+            const reqBody = {
+                username,
+                password
+            };
+            const url = `${Backend.baseURL}/user`;
+
+            props.signUp(url, reqBody, config, setUname, history);
+        }
+
     }
 };
 

@@ -38,7 +38,7 @@ const resolvers = {
                 return result.ops[0];
             }
             else {
-                context.response.status(400);
+                // context.response.status(400);
                 throw new Error('user already exist');
             }
         }
