@@ -8,11 +8,23 @@
             "type": "node",
             "request": "launch",
             "name": "nodemon",
+            "cwd": "${workspaceFolder}/server",
             //"runtimeExecutable": "nodemon",
-            "runtimeExecutable": "${workspaceFolder}/server/node_modules/nodemon/bin/nodemon.js",            
-            "runtimeArgs": ["--nolazy","--require","babel-register"],            
+            "runtimeExecutable": "${workspaceFolder}/server/node_modules/.bin/nodemon",
+            "runtimeArgs": [
+                "--nolazy",
+                "--exec",
+                "babel-node"
+                //"server/node_modules/@babel/node/bin/babel-node.js"
+            ],
             //"program": "${workspaceFolder}/server/src/server.js",
-            "args": ["${workspaceFolder}/server/src/server.js","--ENV=dev","--HTTP_PORT=80","--HTTPS_PORT=443"],
+            "args": [
+                //"${workspaceFolder}/server/src/server.js",
+                "src/server.js",
+                "--ENV=dev",
+                "--HTTP_PORT=80",
+                "--HTTPS_PORT=443"
+            ],
             "restart": true,
             "console": "integratedTerminal",
             "internalConsoleOptions": "neverOpen",
