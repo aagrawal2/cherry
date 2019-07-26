@@ -39,8 +39,8 @@ const mapDispatchToProps = dispatch => {
 const componentDidMount = props => {
     const { username, providerName, match } = props;
     // used redux action to call /account/${accountId} api to get details about the account    
-    const url = `${Backend.baseURL}/user/${username}/provider/${providerName}
-                /account/${match.params.accountId}`;
+    const url = `${Backend.baseURL}/user/${username}/provider/${providerName}` +
+        `/account/${match.params.accountId}`;
     const config = {
         timeout: Backend.timeout,
     };

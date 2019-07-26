@@ -25,7 +25,8 @@ const constructFormData = (accountData, providerName) => {
     });
 
     if (!KEY_ACCOUNT_TYPE_FOUND) {
-        log.error('Field for AccountType value is not found in our system, please contact admin to add this in the system');
+        log.error('Field for AccountType value is not found in our system,' +
+            'please contact admin to add this in the system');
         return undefined;
     }
 
@@ -74,7 +75,8 @@ export const getAccount = (url, config, providerName) => {
                     dispatch(action);
                 }
                 else {
-                    log.error(`GET /account failed, server response status:${response.status} and error:${response.data.error}`);
+                    log.error(`GET /account failed, server response status:${response.status}'+
+                         ' and error:${response.data.error}`);
                     const action = {
                         type: 'ERROR',
                         payload: response.data.error
@@ -83,7 +85,7 @@ export const getAccount = (url, config, providerName) => {
                 }
             })
             .catch(error => {
-                log.error(`GET /account failed, client-server communication error:${error.stack}`);
+                log.error(`GET /account failed, ${error.message}, ${error.stack}`);
                 const action = {
                     type: 'ERROR',
                     payload: error.stack
@@ -100,7 +102,8 @@ export const putAccount = (url, config, accountDetailsConfig) => {
         // deep copy of this state 
         const formDataCopy = cloneDeep(formData);
 
-        // incorporate original fields in the formDataCopy object before sending it to server            
+        /* incorporate original fields in the formDataCopy object 
+        before sending it to server             */
         formDataCopy.forEach((element) => {
             /* find this element in accountDetailsConfig
             and then extract the accessor field from this config */
@@ -169,7 +172,8 @@ export const putAccount = (url, config, accountDetailsConfig) => {
 
                     dispatch(action);
                 } else {
-                    log.error(`PUT /account failed with response status:${response.status} and error:${response.error}`);
+                    log.error(`PUT /account failed with response status:${response.status} '+
+                        'and error:${response.error}`);
                     // show RED color flash message "Failed"
                     const action = {
                         type: 'PUT_ACCOUNT_FLASH_START',
