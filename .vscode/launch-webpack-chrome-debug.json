@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/server.js",
+            "args": [
+                "--env.environment=dev"
+            ],
+            /* "env": {
+                "NODE_ENV": "production"
+            } */
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            //"trace": "verbose",
+            //"diagnosticLogging": true,
+            "name": "Launch Chrome",
+            "url": "https://pictureframe-local.intuit.com:8000",
+            "webRoot": "${workspaceFolder}",
+            "sourceMapPathOverrides": {
+                "webpack://fdx/./src/*": "${webRoot}/src/*"
+            }
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to Chrome",
+            "url": "https://pictureframe-local.intuit.com:8000",
+            "port": 9222,
+            "webRoot": "${workspaceFolder}/src"
+        }
+    ]
+}
