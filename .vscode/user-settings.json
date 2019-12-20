@@ -1,0 +1,19 @@
+{
+  "sync.gist": "aagrawal2",
+  "files.autoSave": "onFocusChange",
+  "git.autofetch": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "eslint.autoFixOnSave": true,
+  "window.zoomLevel": 1,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.editor.enablePreview": false,
+  "better-comments.multilineComments": true,
+  "better-comments.highlightPlainText": true,
+  "gitlens.views.fileHistory.location": "scm",
+  "gitlens.views.lineHistory.location": "scm",
+  "gitlens.views.search.location": "scm",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "debug.node.autoAttach": "on",
+  "javascript.validate.enable": false
+}
