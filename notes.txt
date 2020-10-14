@@ -1,0 +1,2 @@
+Node debugging - In case you see breakpoint greyed-out and debugger is not stopping in original file then just put 'debugger' inside the file where you want to break and then all the further breakpoints will work with original file only. 
+
