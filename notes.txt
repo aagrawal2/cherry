@@ -1,2 +1,8 @@
-Node debugging - In case you see breakpoint greyed-out and debugger is not stopping in original file then just put 'debugger' inside the file where you want to break and then all the further breakpoints will work with original file only. 
+1:Node debugging - In case you see breakpoint greyed-out and debugger is not stopping in original file then just put 'debugger' inside the file where you want to break and then all the further breakpoints will work with original file only. 
+
+2:React-Natvie Debugger from VSCode via react-native-tools - set following contents inside .vscode/settings.json
+{
+    "react-native-tools.projectRoot": "./native"
+}
+Where ./native is the react-natvie project root -- like this was the case in FDX Web/RN project.
 
