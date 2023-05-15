@@ -8,7 +8,7 @@ Following are the high level steps to explain the solution. These steps are expl
 - In case the user goes offline or brittle network connection, user should be able to submit these images on demand. In fact it's even better if we build an offline upload & notification solution on top of this solution which will submit these images on behalf of user and notification the user. This will be very effective in case of offline scenario. 
 
 ### Secure(Autentication+Authorization) & Upload Object Architecture
-[[Images/UploadArchitecture.png]]
+![image](UploadArchitecture.png)
 - User clicks Submit CTA. 
 - Send a HTTP GET request to get preSigned URL.
 - Pre-Signed URLs
