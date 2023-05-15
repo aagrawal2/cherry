@@ -28,4 +28,103 @@ Following are the high level steps to explain the solution. These steps are expl
 - Optional and Good to have Feature
    * We can implement Asynchronous Image Processing Lambda Function, which can retrieve the Image from desired S3 bucket and then do the image processing like Crop, Resize etc... and upload back the processed object. 
 
+### Best Practices
+- Limit file size
+   * To prevent users from uploading extremely large files, set a maximum file size limit when generating the pre-signed URL. This can be done using the `Content-Length` header in the pre-signed URL request.
+- Authorization
+   * Configure the S3 bucket policies and CORS settings to allow only specific actions (e.g., `s3:PutObject`) from specific domains or users. This helps prevent unauthorized access to your S3 bucket.
+- Encrypt data
+   * Enable server-side encryption for your S3 bucket to protect the stored data. Amazon S3 supports several encryption options, such as SSE-S3, SSE-KMS, or SSE-C.
+- Use short expiration times
+   * Set a short expiration time for the pre-signed URLs, such as 5 or 10 minutes. This limits the time window in which an attacker could potentially use the URL.
+- Monitor and log activity
+   * Use AWS CloudTrail and S3 access logs to monitor and log all activities related to your S3 bucket. This helps you track any unauthorized access or suspicious activities.
+
+### Would you use react query to handle image processing & uploading?
+- React Query is an excellent library for fetching, caching & state management. However, it may not be the best choice for handling image processing and uploading, as its primary focus is on data fetching and state management. For image processing and uploading, you can consider using AWS services/libraries that are specifically designed for this purpose. Ex: `aws-sdk` javascript module can upload and manage images in S3. 
+- AWS Lambda: AWS Lambda is a serverless compute service that lets you run your code without provisioning or managing servers. You can use Lambda to create a function that processes images (resizing, cropping, etc.) and uploads the processed images to Amazon S3.
+- You can still integrate this with React Query for fetching and displaying the images in your application. This way, you can benefit from React Query's caching and state management features while using specialized module for handling image processing and uploading tasks.
+
+### How would you cache and store existing images from existing workflow instance steps for offline access?
+Use react-native-fast-image module along with react-native-async-storage or react-native-fs module. react-native-fast-image is used to cache & render the image while react-native-async-storage/async-storage or react-native-fs module can be used to store the image for offline access. 
+Here is the code snippet for reference - 
+```
+import FastImage from 'react-native-fast-image';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import RNFS from 'react-native-fs';
+
+async function cacheImage(url) {
+  try {
+    const cacheKey = `cache_${url}`;
+    const cachedPath = await AsyncStorage.getItem(cacheKey);
+
+    if (cachedPath) {
+      return cachedPath;
+    }
+
+    const downloadPath = `${RNFS.CachesDirectoryPath}/${cacheKey}`;
+    await RNFS.downloadFile({ fromUrl: url, toFile: downloadPath }).promise;
+
+    await AsyncStorage.setItem(cacheKey, downloadPath);
+    return downloadPath;
+  } catch (error) {
+    console.error('Error caching image:', error);
+    return url;
+  }
+}
+Use the cached images:
+
+import React, { useState, useEffect } from 'react';
+import FastImage from 'react-native-fast-image';
+
+const CachedImage = ({ source, ...props }) => {
+  const [cachedSource, setCachedSource] = useState(null);
+
+  useEffect(() => {
+    async function loadCachedImage() {
+      const cachedPath = await cacheImage(source.uri);
+      setCachedSource({ uri: cachedPath });
+    }
+
+    loadCachedImage();
+  }, [source]);
+
+  return <FastImage source={cachedSource || source} {...props} />;
+};
+Use the CachedImage component in the App - 
+
+import React from 'react';
+import { View } from 'react-native';
+import CachedImage from './CachedImage';
+
+const App = () => {
+  return (
+    <View>
+      <CachedImage
+        source={{ uri: 'https://example.com/image.jpg' }}
+        style={{ width: 100, height: 100 }}
+      />
+    </View>
+  );
+};
+
+export default App;
+
+```
+
+### How would you monitor the upload process for each asset? What are the failure points? How would you handle them?
+- Use AWS CloudTrail to monitor upload S3 & S3 Logs access.
+- Failure points during upload S3 - There are several potential failure points during S3 upload image.
+   * Network connectivity issues: If there are network connectivity issues, the upload process may fail or take longer than expected. 
+   * Insufficient permissions: If the user does not have sufficient permissions to upload files to the S3 bucket, the upload process will fail.
+   * Incorrect bucket name or region: If the bucket name or region is incorrect, the upload process will fail.
+   * File size limitations: If the file size exceeds the maximum allowed size for the S3 bucket, the upload process will fail.
+   * Timeouts: If the upload process takes too long to complete, it may time out and fail.
+   * Server-side errors: Server-side errors such as internal server errors or service unavailable errors can also cause the upload process to fail.
+- Upload Failure Handling
+   * Use multipart upload: If you're uploading large files, it's recommended to use multipart upload using built-in multi-upload feature with `aws-sdk`. This allows you to split the file into smaller parts and upload them separately. If one part fails, you can retry just that part instead of starting the entire upload again.
+   * Implement retries: You can implement retries in your code to automatically retry the upload if it fails. You can set a maximum number of retries to avoid getting stuck in an infinite loop. 
+   * Use exponential backoff: When retrying, you can use exponential backoff to avoid overwhelming the server with too many requests. This means that you start with a small delay between retries and gradually increase it with each retry.
+   * Use `AWS SDKs`: If you're using `AWS SDKs`, they come with built-in error handling and retry mechanisms.
+
 
