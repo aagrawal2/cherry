@@ -40,6 +40,86 @@ Following are the high level steps to explain the solution. These steps are expl
 - Monitor and log activity
    * Use AWS CloudTrail and S3 access logs to monitor and log all activities related to your S3 bucket. This helps you track any unauthorized access or suspicious activities.
 
+### Multi-Part Uploading Sample Code 
+```
+const AWS = require('aws-sdk');
+const fs = require('fs');
+const path = require('path');
+
+const BUCKET_NAME = 'your-bucket-name';
+const FILE_PATH = 'path/to/your/large-file.ext';
+const FILE_NAME = 'large-file.ext';
+const PART_SIZE = 5 * 1024 * 1024; // 5MB
+
+const s3 = new AWS.S3({
+  accessKeyId: 'your-access-key-id',
+  secretAccessKey: 'your-secret-access-key',
+  region: 'your-region'
+});
+
+const initiateMultipartUpload = async () => {
+  const params = {
+    Bucket: BUCKET_NAME,
+    Key: FILE_NAME,
+  };
+
+  return s3.createMultipartUpload(params).promise();
+};
+
+const uploadPart = async (uploadId, partNumber, buffer) => {
+  const params = {
+    Body: buffer,
+    Bucket: BUCKET_NAME,
+    Key: FILE_NAME,
+    PartNumber: partNumber,
+    UploadId: uploadId,
+  };
+
+  return s3.uploadPart(params).promise();
+};
+
+const completeMultipartUpload = async (uploadId, parts) => {
+  const params = {
+    Bucket: BUCKET_NAME,
+    Key: FILE_NAME,
+    MultipartUpload: {
+      Parts: parts,
+    },
+    UploadId: uploadId,
+  };
+
+  return s3.completeMultipartUpload(params).promise();
+};
+
+const multiPartUpload = async () => {
+  const { UploadId } = await initiateMultipartUpload();
+  const fileStream = fs.createReadStream(FILE_PATH);
+  const fileStats = fs.statSync(FILE_PATH);
+  const parts = [];
+  let partNumber = 1;
+
+  for (let start = 0; start < fileStats.size; start += PART_SIZE) {
+    const end = Math.min(start + PART_SIZE, fileStats.size);
+    const buffer = Buffer.alloc(end - start);
+
+    fileStream.read(buffer);
+
+    console.log(`Uploading part ${partNumber}`);
+    const { ETag } = await uploadPart(UploadId, partNumber, buffer);
+    parts.push({ ETag, PartNumber: partNumber });
+
+    partNumber++;
+  }
+
+  console.log('Completing multi-part upload');
+  await completeMultipartUpload(UploadId, parts);
+  console.log('Upload completed successfully');
+};
+
+multiPartUpload().catch(console.error);
+
+```
+
 ### Would you use react query to handle image processing & uploading?
 - React Query is an excellent library for fetching, caching & state management. However, it may not be the best choice for handling image processing and uploading, as its primary focus is on data fetching and state management. For image processing and uploading, you can consider using AWS services/libraries that are specifically designed for this purpose. Ex: `aws-sdk` javascript module can upload and manage images in S3. 
 - AWS Lambda: AWS Lambda is a serverless compute service that lets you run your code without provisioning or managing servers. You can use Lambda to create a function that processes images (resizing, cropping, etc.) and uploads the processed images to Amazon S3.
