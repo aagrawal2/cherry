@@ -128,3 +128,49 @@ export default App;
    * Use `AWS SDKs`: If you're using `AWS SDKs`, they come with built-in error handling and retry mechanisms.
 
 
+### How would the product behave without a network connection? With a brittle network connection?
+- Inform users - Clearly inform users when the app is operating in offline mode. Display a message or an icon to indicate that the app is not connected to the internet.
+- Offline functionality
+   * User can still see the Step Instructions as there is no dependency on network.
+   * Attach photos/video and add notes/dcoumentation continue work as there is no network dependency. This will also leverage cached & stored images (if any) previously. They will continue show to the user if added already and then device goes offline. 
+   * Log an issue modal will continue take all the user inputs. When 'Log issue' or 'Update issue' is clicked then it will show a user friendly error. It can save the entire session and upload it in background when device comes online and notify user. OR This button can be in Disabled state if device is offline (work with XD to align on better user experience)
+- Data synchronization: When the network connection is restored, the app should synchronize any changes made during offline mode with the server. This ensures that the user's data is up-to-date and consistent across devices.
+- Graceful degradation: Some features may not be available in offline mode, but the app should degrade gracefully. This means that unavailable features should be greyed out or hidden, rather than causing the app to crash or become unresponsive. Ex: We can keep `Log Iusse` or `Update Issue` in Disabled state.
+- Error handling: The app should handle network errors and timeouts gracefully. This includes displaying appropriate error messages, providing options to retry or cancel actions, and ensuring the app remains stable and usable. 
+- Network detection: The app should be able to detect when the network connection has been restored and automatically switch back to online mode. This can be achieved through network listeners or periodic checks for connectivity.
+- Optimize performance: Optimize the app's performance for offline usage by minimizing resource consumption, reducing battery drain, and ensuring fast response times.
+- User-friendly design: Design the app's user interface in a way that makes it easy for users to understand and navigate, even when operating in offline mode.
+- Progressive enhancement: Implement progressive enhancement techniques, where the app's core functionality is available to all users, regardless of their network connection, while advanced features are progressively added as network conditions improve.
+
+### Based on the figma prototype, how would you define user stores & acceptance criteria?
+I will break down the user stories in different buckets.
+- Bucket 1: Implementation of UI specific changes include rendering UI components only. AC: Responsive layout - should be rendered in different types of devices as per the figma.
+- Bucket 2: Implementation of event handlers of UI components. AC: Required UI state change should happen based on the events which includes UI animation & transition changes.
+- Bucket 3: Implementation of repository layer which includes networking calls & business logics. AC: MOCK data/server should be created to functionally test the business & netwroking logic. 
+- Bucket 4: Integration of all the screens and Navigation. AC: Forward and Back navigation should work as expected.
+- Bucket 5: Testing. AC: Unit & UI tests to ensure the functional testing in positive & negative scenarios. This will also include the end-to-end testing using real endpoints. 
+Here are the examples:
+- 1.1: Implement 'Workflow Input Screen' ui components only.
+- 1.2: Implement 'Step Instruction Manual Screen' ui components only.
+- 1.3: Implement 'Additional Documentation Screen' ui components only. This includes sub components as per the figma.
+- 1.4: Implement 'Log An Issue Screen' ui components only.
+- 1.5: Implement 'Completion Step Success Screen' ui components only. 
+- 2.1: Implement event handlers of 'Workflow Input Screen' components.
+- 2.2: Implement event handlers of 'Step Instruction Manual Screen' components. 
+- 2.3: Implement event handlers of 'Additional Documentation Screen' components. 
+- 2.4: Implement event handlers of 'Log An Issue Screen' components. 
+- 2.5: Implelment event handlers of 'Completed Step Screen' components. 
+- 3.1: Implementation of Networking layer & required business logic.
+- 4.1: Integration of all the above ui components and Navigation.
+- 5.1: Unit Testing, UI Testing and End-to-End Testing.
+
+### What are ways to test, measure and monitor this new architecture?
+- Load testing: Perform load testing to ensure that the new architecture can handle the expected load and traffic. This will help you identify potential bottlenecks and performance issues. 
+- Performance testing: Conduct performance testing to measure the response time, throughput, and resource utilization of the new architecture. This will help you identify any performance issues and optimize the system accordingly. 
+- Security testing: Perform security testing to identify any vulnerabilities in the new architecture. This will help you ensure that the system is secure and protected against potential threats. 
+- Monitoring: Implement monitoring tools to track the performance and availability of the new architecture. This will help you identify any issues in real-time and take appropriate actions to resolve them. 
+- Analytics: Use analytics tools to collect and analyze data on the usage and behavior of the new architecture. This will help you identify areas for improvement and optimize the system accordingly.
+
+
+
+
