@@ -192,6 +192,9 @@ export default App;
 
 ```
 
+### Backend access of Image objects from S3 
+![image](Backend.png)
+
 ### How would you monitor the upload process for each asset? What are the failure points? How would you handle them?
 - Use AWS CloudTrail to monitor upload S3 & S3 Logs access.
 - Failure points during upload S3 - There are several potential failure points during S3 upload image.
